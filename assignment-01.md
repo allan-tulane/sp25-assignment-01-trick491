@@ -18,29 +18,29 @@ In this assignment, you will learn more about asymptotic notation, parallelism, 
 .  
 . 
   - 1b. Is $2^{2^n} \in O(2^n)$? Why or why not?     
-.  
+.  No, because 2^w^n grows more exponentially.
 .  
 .  
 .  
 .  
   - 1c. Is $n^{1.01} \in O(\mathrm{log}^2 n)$?    
-.  
+.  No, because logarithmic functions grow slower than exponents.
 .  
 .  
 .  
 
   - 1d. Is $n^{1.01} \in \Omega(\mathrm{log}^2 n)$?  
-.  
+.  Yes, again, because exponents grow faster than log
 .  
 .  
 .  
   - 1e. Is $\sqrt{n} \in O((\mathrm{log} n)^3)$?  
-.  
+.  No, because polynomials grow much faster than logarithmic functions.
 .  
 .  
 .  
   - 1f. Is $\sqrt{n} \in \Omega((\mathrm{log} n)^3)$?  
-.  
+.  Yes, the lim of sqrt(n)/(log(n)^3) = infinity, meaning sqrt(n) dominates
 
 
 2. **SPARC to Python** (12 pts)
@@ -61,16 +61,9 @@ $$
   - 2a. (6 pts) Translate this to Python code -- fill in the `def foo` method in `main.py`  
 
   - 2b. (6 pts) What does this function do, in your own words?  
+This function calculates the output of position x in the fibonnachi sequence. The base case is when x is 0 or 1 and returns 1, and recurses from adding foo(x-1) and foo(x-1), outputting the previous two outputs added together until it reaches index x.  
 
 .  
-.  
-.  
-.  
-.  
-.  
-.  
-.  
-  
 
 3. **Parallelism and recursion** (26 pts)
 
@@ -90,7 +83,12 @@ E.g., `longest_run([2,12,12,8,12,12,12,0,12,1], 12) == 3`
  
   - 3a. (7 pts) First, implement an iterative, sequential version of `longest_run` in `main.py`.  
 
-  - 3b. (4 pts) What is the Work and Span of this implementation?  
+  - 3b. (4 pts) What is the Work and Span of this implementation?
+Work:
+O(n) since we go through the array once.
+
+Span:
+The span is also O(n), because there isnt parallel computation
 
 .  
 .  
@@ -105,10 +103,14 @@ E.g., `longest_run([2,12,12,8,12,12,12,0,12,1], 12) == 3`
 
   - 3c. (7 pts) Next, implement a `longest_run_recursive`, a recursive, divide and conquer implementation. This is analogous to our implementation of `sum_list_recursive`. To do so, you will need to think about how to combine partial solutions from each recursive call. Make use of the provided class `Result`.   
 
-  - 3d. (4 pts) What is the Work and Span of this sequential algorithm?  
-.  
-.  
-.  
+  - 3d. (4 pts) What is the Work and Span of this sequential algorithm?
+
+Work:
+O(n) since each element is processed
+
+Span:
+O(log n) since at each step we divide it in half
+
 .  
 .  
 .  
@@ -121,7 +123,10 @@ E.g., `longest_run([2,12,12,8,12,12,12,0,12,1], 12) == 3`
 
   - 3e. (4 pts) Assume that we parallelize in a similar way we did with `sum_list_recursive`. That is, each recursive call spawns a new thread. What is the Work and Span of this algorithm?  
 
-.  
+Work: O(n)
+
+Span: O(log n)
+
 .  
 .  
 .  
